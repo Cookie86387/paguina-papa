@@ -1,0 +1,24 @@
+import pygame
+import time
+
+# Inicializa pygame y el joystick
+pygame.init()
+pygame.joystick.init()
+
+try:
+    joystick = pygame.joystick.Joystick(0)  # Usa el primer joystick detectado
+    joystick.init()
+    print(f"Control detectado: {joystick.get_name()}")
+
+    print("Vibración iniciada. Presiona Ctrl + C para detenerla.")
+    
+    while True:
+        joystick.rumble(1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.0, 1010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.0, 10001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)  # Vibración máxima en ambos motores por 1 segundo
+        time.sleep(0)  # Espera antes de volver a vibrar
+
+except pygame.error:
+    print("No se detectó un control de Xbox 360.")
+except KeyboardInterrupt:
+    print("\nVibración detenida.")
+
+pygame.quit()

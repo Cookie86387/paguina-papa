@@ -1,0 +1,550 @@
+:root {
+    --color-fondo: #f5f5f5;
+    --color-principal: #1e1e1e;
+    --color-secundario: #27ae60;
+    --color-texto: #333;
+    --color-blanco: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+header {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(
+        135deg,
+        rgba(13, 183, 36, 0.474),
+        rgb(0, 0, 0)
+    );
+    
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--color-blanco);
+    font-weight: bold;
+}
+
+.hero {
+    position: relative;
+    height: 80vh;
+    background: linear-gradient(to right, var(--color-secundario), var(--color-principal));
+    color: var(--color-blanco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+
+.hero-bg {
+    position: absolute;
+    top: -10%;
+    left: -11%;
+    width: 120%;
+    height: 110%;
+    opacity: 0.2; /* Ajusta la opacidad según tu preferencia */
+    z-index: 1; /* Asegura que la imagen esté detrás del texto */
+}
+
+.hero > div {
+    position: relative;
+    z-index: 2; /* Asegura que el contenido esté encima de la imagen */
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    /* Fondo con degradado diagonal */
+    background: linear-gradient(
+        135deg,
+        rgba(13, 183, 36, 0.474),
+        rgba(67, 138, 86, 0.1)
+    );
+}
+
+.auto-card {
+    height: 325px; /* Tamaño inicial de la tarjeta */
+    transition: height 0.4s ease;
+    position: relative;
+    background-color: var(--color-blanco);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auto-card:hover {
+    height: 600px; /* La tarjeta se agranda hacia abajo */
+    transition: height 0.4s ease;
+    transform: scale(1.05);
+    overflow: visible;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Extra-info: oculta y colapsada, sin transición inmediata */
+.auto-card .extra-info {
+    position: absolute;
+    bottom: 0;              /* fija abajo de la tarjeta */
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(255,255,255,0.95);
+    border-radius: 0 0 8px 8px;
+    padding: 0 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    /* transiciones: max-height y opacity empiezan tras 0.4s */
+    transition:
+      max-height 0.4s ease    0.4s,
+      opacity    0.3s ease    0.4s,
+      visibility 0s           0.1s; /* visibilidad cambia al final */
+  }
+
+/* Al hacer hover en .auto-card activamos extra-info */
+.auto-card:hover .extra-info {
+    max-height: 200px;
+    opacity: 1;
+    visibility: visible;
+    padding-top: 10px;
+  }
+
+/* Animación para expandir la caja del texto */
+@keyframes expand-text {
+    from {
+        max-height: 0;
+        padding-top: 0;
+    }
+    to {
+        max-height: 200px;
+        padding-top: 10px;
+    }
+}
+
+.auto-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.anim-appear {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.anim-appear.delay {
+    transition-delay: 0.2s; /* Asegura que el retraso sea uniforme en el CSS */
+}
+
+.logo-appear {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.logo-appear.delay {
+    transition-delay: 0.2s; /* Asegura que el retraso sea uniforme en el CSS */
+}
+
+.about {
+    padding: 4rem 2rem;
+    background-color: var(--color-fondo);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.info-block {
+    background-color: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-block h3 {
+    margin-top: 0;
+    color: var(--color-principal);
+    font-size: 1.5rem;
+}
+
+.info-block p {
+    color: var(--color-texto);
+    font-size: 1rem;
+}
+
+.info-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.info-logos {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+.anim-appear {
+    opacity: 0;
+    transform: translateY(20px);
+}
+.trabajamos-con {
+    padding: 2rem;
+    text-align: center;
+}
+
+.trabajamos-con h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logos img {
+    width: 100px;  /* Ajusta según el tamaño de tus logos */
+    height: auto;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.logos img.aparece {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.cta {
+    text-align: center; /* Centra el texto dentro de la sección */
+    padding: 50px 20px; /* Agrega un poco de espacio arriba y abajo */
+    background-color: #f4f4f4; /* Color de fondo suave */
+    margin: 0 auto; /* Asegura que la sección esté centrada */
+    max-width: 1000px; /* Maximo ancho para no estirarse demasiado */
+}
+
+.cta h2 {
+    font-size: 2rem;
+    color: var(--color-principal);
+    margin-bottom: 1rem; /* Un pequeño espacio debajo del texto */
+}
+
+.btn {
+    background-color: var(--color-secundario);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #1e874b;
+}
+
+.auto-card img.imagen-bajo {
+    width: 60px;  /* Ajusta según el tamaño de la imagen */
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+.auto-card img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.auto-card .info {
+    padding: 1rem;
+    position: relative;
+}
+
+.auto-card .info img.logo {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-blanco);
+    border: 2px solid #ddd;
+    object-fit: contain;
+}
+
+.auto-card .info h3 {
+    margin-top: 30px;
+    font-size: 1.2rem;
+}
+
+.auto-card .info p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Estilos para mostrar más información al pasar el mouse */
+.auto-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auto-card:hover img {
+    transform: scale(1.1);
+}
+
+
+
+/* Contenedor de la información extra */
+.extra-info {
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    transition: all 1s ease-in-out;
+}
+
+.extra-info p {
+    margin: 5px 0;
+}
+
+.extra-info strong {
+    color: #000;
+}
+
+.contacto {
+    padding: 2rem;
+    background-color: var(--color-fondo);
+}
+
+.contacto h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color-principal);
+}
+
+.contacto form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contacto form .campo {
+    margin-bottom: 1rem;
+}
+
+.contacto form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.contacto form input, .contacto form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.contacto form textarea {
+    resize: none;
+    height: 100px;
+}
+
+.contacto form button {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.contacto form button:hover {
+    background-color: #1e874b;
+}
+
+.contacto .iconos {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    gap: 1.5rem;
+}
+
+.contacto .iconos a {
+    text-decoration: none;
+    color: var(--color-principal);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.contacto .iconos a:hover {
+    color: var(--color-secundario);
+}
+
+.mapa {
+    margin: 2rem auto;
+    max-width: 800px;
+    height: 400px;
+}
+footer {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+footer a {
+    color: var(--color-secundario);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive para teléfonos */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .hero {
+        height: auto;
+        padding: 4rem 1rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .catalogo {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .auto-card {
+        height: auto;
+    }
+
+    .auto-card:hover {
+        height: auto; /* Desactivamos el hover-expand en móvil */
+        transform: none;
+    }
+
+    .auto-card:hover .extra-info {
+        max-height: none;
+        opacity: 1;
+        visibility: visible;
+        position: relative;
+        padding: 1rem;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+    }
+
+    .trabajamos-con h2 {
+        font-size: 1.5rem;
+    }
+
+    .logos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logos img {
+        width: 80px;
+    }
+
+    .cta {
+        padding: 2rem 1rem;
+    }
+
+    .cta h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .contacto form {
+        padding: 1.5rem;
+    }
+}
